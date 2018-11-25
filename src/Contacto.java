@@ -1,7 +1,21 @@
-public class Contacto {
 
+import java.util.ResourceBundle;
+
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+/**
+ *
+ * @author ccc7
+ */
+public class Contacto {
+  
     private String nombre;
     private int telefono;
+
 
     public Contacto(String nombre, int telefono) {
         this.nombre = nombre;
@@ -40,7 +54,7 @@ public class Contacto {
 
     @Override
     public String toString() {
-        return "nombre=" + nombre + ", telefono=" + telefono;
+        return java.text.MessageFormat.format(java.util.ResourceBundle.getBundle("Bundle").getString("nombre={0}, telefono={1}"), new Object[] {nombre, telefono});
     }
 }
 

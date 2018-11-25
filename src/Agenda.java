@@ -1,8 +1,21 @@
+
+import java.util.Locale;
+import java.util.ResourceBundle;
+
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+/**
+ *
+ * @author ccc7
+ */
 public class Agenda {
-
-    //Atributos
+  //Atributos
     private Contacto[] contactos;
-
+    
     //Constructores
     public Agenda() {
         this.contactos = new Contacto[10]; //por defecto
@@ -18,12 +31,12 @@ public class Agenda {
      *
      * @param c
      */
-    public void aniadirContacto(Contacto c) {
+    public void aniadirContacto(Contacto c,Locale currentLocale) {
 
         if (existeContacto(c)) { //Indico si existe el contacto
-            System.out.println("El contacto con ese nombre ya existe");
+            System.out.println(java.util.ResourceBundle.getBundle("Bundle",currentLocale).getString("El contacto con ese nombre ya existe"));
         } else if (agendaLlena()) { //Indico si la agenda esta o no llena
-            System.out.println("La agenda esta llena, no se pueden meter mas contactos");
+            System.out.println(java.util.ResourceBundle.getBundle("Bundle",currentLocale).getString("La agenda esta llena, no se pueden meter mas contactos"));
         } else {
 
             boolean encontrado = false;
@@ -35,9 +48,9 @@ public class Agenda {
             }
 
             if (encontrado) {
-                System.out.println("Se ha añadido");
+                System.out.println(java.util.ResourceBundle.getBundle("Bundle",currentLocale).getString("Se ha añadido"));
             } else {
-                System.out.println("No se ha podido añadir");
+                System.out.println(java.util.ResourceBundle.getBundle("Bundle",currentLocale).getString("No se ha podido añadir"));
             }
         }
 
@@ -64,10 +77,10 @@ public class Agenda {
     /**
      * Lista los contactos de la agenda
      */
-    public void listarContactos() {
+    public void listarContactos(Locale currentLocale) {
 
         if (huecosLibre() == contactos.length) {
-            System.out.println("No hay contactos que mostrar");
+            System.out.println(java.util.ResourceBundle.getBundle("Bundle",currentLocale).getString("No hay contactos que mostrar"));
         } else {
             for (int i = 0; i < contactos.length; i++) {
                 if (contactos[i] != null) { //Controlo nulos
@@ -78,27 +91,6 @@ public class Agenda {
 
     }
 
-    /**
-     * Busca un contacto por su nombre
-     *
-     * @param nombre
-     */
-    public void buscarPorNombre(String nombre) {
-
-        boolean encontrado = false;
-        for (int i = 0; i < contactos.length && !encontrado; i++) {
-            //Controlo nulos y cxompruebo que es el contacto buscado (forma mas engorrosa)
-            if (contactos[i] != null && contactos[i].getNombre().trim().equalsIgnoreCase(nombre.trim())) {
-                System.out.println("Su telefono es " + contactos[i].getTelefono()); //muestro el telefono
-                encontrado = true; //Indico que lo he encontrado
-            }
-        }
-
-        if (!encontrado) {
-            System.out.println("No se ha encontrado el contacto");
-        }
-
-    }
 
     /**
      * Indica si la agenda esta llena o no
@@ -122,7 +114,7 @@ public class Agenda {
      *
      * @param c
      */
-    public void eliminarContacto(Contacto c) {
+    public void eliminarContacto(Contacto c,Locale currentLocale) {
 
         boolean encontrado = false;
         for (int i = 0; i < contactos.length && !encontrado; i++) {
@@ -133,9 +125,9 @@ public class Agenda {
         }
 
         if (encontrado) {
-            System.out.println("Se ha eliminado el contacto");
+            System.out.println(java.util.ResourceBundle.getBundle("Bundle",currentLocale).getString("Se ha eliminado el contacto"));
         } else {
-            System.out.println("No se ha eliminado el contacto");
+            System.out.println(java.util.ResourceBundle.getBundle("Bundle",currentLocale).getString("No se ha eliminado el contacto"));
 
         }
     }
@@ -156,4 +148,7 @@ public class Agenda {
         return contadorLibres;
 
     }
+
+  
+
 }
